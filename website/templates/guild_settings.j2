@@ -1,0 +1,52 @@
+{% extends "base.j2" %}
+
+{% block title %}
+Honey - {{ guild.name }} Settings
+{% endblock title %}
+
+{% block head %}
+{# <link rel="stylesheet" type="text/css" href="/static/css/guild_settings.css" /> #}
+{% endblock head %}
+
+{% block content %}
+<div class="content-header-data">
+    <h2>Welcome to {{ guild.name }}'s settings!
+</div>
+<style type="text/css">
+    a.button1{
+    display: block;
+    padding: 0.75em 1.2em;
+    border: 0.13em solid #FFFFFF;
+    margin: 0 0 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.2s;
+    width: 100%;
+    }
+    a.button1:hover{
+    color: #000000;
+    background-color: #FFFFFF;
+    }
+    @media all and (max-width:30em){
+    a.button1{
+    display: block;
+    margin: 0.4em auto;
+    }
+    } 
+</style>
+<h3 style='text-align: center'>What do you want to configure?</h3>
+<a href="/custom_role_settings?guild_id={{ guild.id }}" class="button1">Custom role settings</a>
+<a href="/moderation_settings?guild_id={{ guild.id }}" class="button1">Moderation settings</a>
+<a href="/fursona_settings?guild_id={{ guild.id }}" class="button1">Fursona settings</a>
+<a href="/interaction_cooldowns?guild_id={{ guild.id }}" class="button1">Interaction cooldowns</a>
+<a href="/shop_settings?guild_id={{ guild.id }}" class="button1">Shop settings</a>
+<a href="/command_disabling?guild_id={{ guild.id }}" class="button1">Command disabling</a>
+<a href="/miscellaneous_settings?guild_id={{ guild.id }}" class="button1">Miscellaneous settings</a>
+
+</form>
+{% endblock content %}

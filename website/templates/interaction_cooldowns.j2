@@ -1,0 +1,40 @@
+{% extends "base.j2" %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+<div class="content-header-data">
+    <h2>Interaction Cooldowns</h2>
+</div>
+<div id=list_current_cooldowns class=boxed>
+    <h3>Current Interation Cooldowns</h3>
+    {% for x in interaction_cooldowns %}
+    <p>{{ x.role_name }} - {{ x.value }}</p>
+    {% endfor %}
+</div>
+<form id=remove_role_interation class=boxed>
+    Delete Role Interaction Cooldown<br>
+    <select name=remove_role_interation_role_id>
+        {% for x in interaction_cooldowns %}
+        <option value="{{ x.role_id }}" name="{{ x.role_name }}">{{ x.role_name }} - {{ x.value }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" formmethod="post" formaction="/delete_role_interaction_cooldown">Delete</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id=add_role_interation class=boxed>
+    <p>Add a New Role Interaction Cooldown</p>
+    What role do you want to set the interaction for?<br>
+    <select name=add_role_interation_role_id required>
+        <option value="" name="}">None</option>
+        {% for x in guild_roles %}
+        <option value="{{ x.id }}" name="{{ x.name }}">{{ x.name }}</option>
+        {% endfor %}
+    </select><br>
+    How long should this role's cooldown be (eg <code>5m</code>, <code>15s</code>, etc)?<br>
+    <input name="cooldown_length" value="30m" required>
+    <button type="submit" formmethod="post" formaction="/add_role_interaction_cooldown">Add New Role Interaction Cooldown</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+{% endblock content %}

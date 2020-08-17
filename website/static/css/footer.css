@@ -1,0 +1,18 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    background: rgb(var(--notblack));
+    border-top: 3px solid white;
+    width: calc(100% - 40px);
+    padding: 10px 20px;
+}
+
+#rainbowText {
+    margin: 1;
+}
+
+footer h4 {
+    color: white;
+    font-weight: normal;
+    margin: 0;
+}

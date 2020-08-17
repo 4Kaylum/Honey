@@ -1,0 +1,105 @@
+header {
+    position: fixed;
+    top: 0;
+    background: rgb(var(--notblack));
+    border-bottom: 5px solid white;
+    width: calc(100%);
+}
+
+#header-content {
+    padding: 10px;
+    list-style: none;
+    margin: auto;
+    width: calc(100vw  - (10px * 2));
+    max-width: 1100px;
+    height: 60px;
+}
+
+header li {
+    /*! display: inline-block; */
+    height: 100%;
+    padding: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header .logo-holder {
+    display: inline-block;
+}
+
+header li.left {
+    float: left;
+}
+
+header li.right {
+    float: right;
+}
+
+header .honey-logo {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    border: 6px solid rgb(var(--greyple));
+}
+
+header .honey-title {
+    color: white;
+    margin: 0;
+    padding: 0 0 0 10px;
+}
+
+header .header-button {
+    width: 100px;
+    height: 75%;
+    background-color: rgb(var(--blurple));
+    border: none;
+    font-size: 1.3em;
+    border-radius: 2px;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 1px lightcyan;
+}
+
+header .user-avatar {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+header .header-button:hover, header .header-button:active{
+    background-color: rgb(var(--greyple));
+}
+
+header .user-avatar {
+    margin: 0 10px 0 0;
+}
+
+header .logout-button {
+    font-size: 1.1em;
+    width: 100px;
+    height: 70%;
+}
+
+header a, header a:visited {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 576px) {
+    header .mb-title {
+        display: none;
+    }
+
+    header .user-avatar {
+        display: none;
+    }
+
+    header .header-button {
+        margin-right: 50px;
+    }
+}

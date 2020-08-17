@@ -1,0 +1,41 @@
+{% extends "base.j2" %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+<div class="content-header-data">
+    <h2>Custom Role Settings</h2>
+</div>
+<form id="custom_role_master" class="boxed">
+    <p>Set custom role master (currently {{ role_master }})</p>
+    What do you want to set this role to?<br>Users with this role are able to make/manage their own custom role name and colour.<br>
+    <select name="custom_role_master_role_id">
+        {% for role in guild_roles%}
+        <option value="{{ role.id }}">{{ role.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_master_role">Submit Custom Role Master Change</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="custom_role_position" class="boxed">
+    <p>Set custom role position (currently below {{ role_master }})</p>
+    What do you want to set this role to?<br>
+    Give a role that newly created custom roles will be created under.<br>
+    <select name="custom_role_position_role_id">
+        {% for role in guild_roles%}
+        <option value="{{ role.id }}">{{ role.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_custom_role_position">Submit Custom Role Position Change</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="custom_role_name_xfix" class="boxed">
+    <p>Set custom role name xfix (currently {{ xfix }})</p>
+    What do you want your custom role suffix to be?<br>
+    If your name ends with a colon (eg `(Custom):`) then it'll be added to the role as a prefix rather than a suffix.<br>
+    <p><input name="custom_role_name_xfix" value="{{ xfix }}" placeholder="(Custom):" maxlength="30" />
+    <button type="submit" formmethod="post" formaction="/set_custom_role_name_xfix">Submit Custom Role Name Xfix</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+{% endblock content %}

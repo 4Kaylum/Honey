@@ -1,0 +1,64 @@
+{% extends "base.j2" %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+<div class="content-header-data">
+    <h2>Fursona Settings</h2>
+</div>
+<form id=allow_nsfw class=boxed>
+    <p>Allow NSFW fursonas (currently {{ is_nsfw_allowed }})</p>
+    Do you want to allow NSFW fursonas?<br>
+    <select name="allow_nsfw_fursonas">
+        <option value="True">True</option>
+        <option value="False">False</option>
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_allow_nsfw">Submit</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id=fursona_modmail class=boxed>
+    <p>Set fursona modmail channel (currently {{ fursona_modmail_channel }})</p>
+    What channel do you want to set fursona modmail to go to?<br>
+    <select name="fursona_modmail_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_fursona_modmail">Submit Fursona Modmail Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id=fursona_decline_archive class=boxed>
+    <p>Set fursona decline archive channel (currently {{ fursona_decline_archive_channel }})</p>
+   What channel do you want declined fursonas to go to?<br>
+    <select name="fursona_decline_archive_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_fursona_decline_archive">Submit Fursona Decline Archive Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id=fursona_accept_archive class=boxed>
+    <p>Set fursona accept archive channel (currently {{ fursona_accept_archive_channel }})</p>
+    What channel do you want accepted fursonas to go to?<br>
+    <select name="fursona_accept_archive_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_fursona_accept_archive">Submit Fursona Accept Archive Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id=nsfw_fursona_accept_archive class=boxed>
+    <p>Set NSFW fursona accept archive channel (currently {{ nsfw_fursona_archive_channel }})</p>
+    What channel do you want accepted NSFW fursonas to go to?<br>
+    <select name="fursona_accept_nsfw_archive_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_nsfw_fursona_archive">Submit NSFW Fursona Accept Archive Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+{% endblock content %}

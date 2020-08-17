@@ -1,0 +1,38 @@
+html {
+    height: 100%;
+}
+
+:root {
+    /* --greyple: 153, 170, 181; */
+    --greyple: 213, 144, 55;
+    --blurple: 114, 137, 218;
+    --notblack: 44, 47, 51;
+    --black: 35, 39, 42;
+}
+
+@font-face {
+    font-family: "Whitney-Book";
+    font-weight: normal;
+    src: url(/static/fonts/whitney-book.otf) format("opentype");
+    font-display: swap;
+}
+
+body {
+    background: rgb(var(--greyple));
+    margin: 0;
+    font-family: "Whitney-Book", Helvetica Neue, Helvetica, Arial, sans-serif;
+    min-height: 0vh;
+    position: relative;
+}
+
+.code {
+    padding: 0 5px 0 5px;
+    background: lightgrey;
+    border-radius: 5px;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+label {
+    margin-left: 10px;
+}

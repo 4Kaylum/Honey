@@ -1,0 +1,21 @@
+#colour-selector-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#colour-selector-content #colour-selector, #colour-selector-content #preview-iframe {
+    width: 50%;
+    /* min-width: 400px; */
+}
+
+@media screen and (max-width: 576px) {
+    #colour-selector-content #colour-selector, #colour-selector-content #preview-iframe {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+#preview-iframe {
+    border: 0;
+}

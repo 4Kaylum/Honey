@@ -1,0 +1,137 @@
+{% extends "base.j2" %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+<div class="content-header-data">
+    <h2>Moderation Settings</h2>
+</div>
+<form id="verified_role" class="boxed">
+    <p>Set verified role (currently {{ verfied_role }})</p>
+    What do you want to set the verified role to?<br>
+    <select name="verified_role_id">
+        {% for role in guild_roles%}
+        <option value="{{ role.id }}">{{ role.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_verify_role">Submit Verified Role</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="mute_role" class="boxed">
+    <p>Set mute role (currently {{ muted_role }})</p>
+    What do you want to set the mute role to?<br>
+    <select name="muted_role_id">
+        {% for role in guild_roles%}
+        <option value="{{ role.id }}">{{ role.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_mute_role">Submit Mute Role</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="roles_to_be_removed" class="boxed">
+    <p>Set roles which are removed on mute?</p>
+    What roles do you want removed when a user is muted?<br>
+    {% for role in guild_roles_test%}
+        {% if role[1] %}
+            <input type="checkbox" id="{{ role[0].id }}" name="removed_roles_ids" value="{{ role[0].id }}" checked> {{ role[0].name }}<br>
+        {% else %}
+            <input type="checkbox" id="{{ role[0].id }}" name="removed_roles_ids" value="{{ role[0].id }}"> {{ role[0].name }}<br>
+        {% endif %}
+        {# <label for="{{ role[0].id }}"> {{ role[0].name }} </label> #}
+    {%endfor%}
+    <button type="submit" formmethod="post" formaction="/set_roles_to_be_removed">Submit Roles To Be Removed</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="moderator_role" class="boxed">
+    <p>Set moderator role (currently {{ moderator_role }})</p>
+    What do you want to set the moderator role to?<br>
+    <select name="moderator_role_id">
+        {% for role in guild_roles%}
+        <option value="{{ role.id }}">{{ role.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_moderator_role">Submit Moderator Role</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<h2>Mod Logs Configuration</h2>
+<form id="kick_archive_channel" class="boxed">
+    <p>Set kick archive channel (currently {{ kick_archive_channel }})</p>
+    What channel do you want kicks to go to?<br>
+    <select name="kick_archive_channel_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_kick_archive_channel">Submit Kick Archive Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="ban_archive_channel" class="boxed">
+    <p>Set ban archive channel (currently {{ ban_archive_channel }})</p>
+    What channel do you want bans to go to?<br>
+    <select name="ban_archive_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_ban_archive_channel">Submit Ban Archive Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="mute_archive_channel" class="boxed">
+    <p>Set mute archive channel (currently {{ mute_archive_channel }})</p>
+    What channel do you want mutes to go to?<br>
+    <select name="mute_archive_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_mute_archive_channel">Submit Mute Archive Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="warn_archive_channel" class="boxed">
+    <p>Set warn archive channel (currently {{ warns_archive_channel }})</p>
+    What channel do you want warns to go to?<br>
+    <select name="warn_archive_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_warn_archive_channel">Submit Warn Archive Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="edited_message_archive_channel" class="boxed">
+    <p>Set edited message archive channel (currently {{ edited_message_archive_channel }})</p>
+    What channel do you want edited message logs to go to?<br>
+    <select name="edited_message_archive_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_edited_message_archive_channel">Submit Edited Message Archive Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="delete_message_archive_channel" class="boxed">
+    <p>Set deleted message archive channel (currently {{ delete_message_archive_channel }})</p>
+    What channel do you want deleted message logs to go to?<br>
+    <select name="delete_message_archive_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_delete_message_archive_channel">Submit Deleted Message Archive Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+<form id="vc_update_archive_channel" class="boxed">
+    <p>Set voice channel update archive channel (currently {{ vc_update_archive_channel }})</p>
+    What channel do you want VC updates to go to?<br>
+    <select name="vc_update_archive_channel_id">
+        {% for channel in guild_channels%}
+        <option value="{{ channel.id }}">#{{ channel.name }}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" formmethod="post" formaction="/set_vc_update_archive_channel">Submit Voice Update Log Channel</button>
+    <input name="guild_id" value="{{ guild.id }}" type="hidden" />
+</form>
+
+
+{% endblock content %}
