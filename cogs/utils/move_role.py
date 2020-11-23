@@ -48,4 +48,7 @@ async def move_role_position_below(role:discord.Role, below:discord.Role, reason
         new_roles.append({"id": r.id, "position": position})
 
     # Make and send the payload
-    await http.move_role_position(role.guild.id, new_roles, reason=reason)
+    # await http.move_role_position(role.guild.id, new_roles, reason=reason)
+
+    import json
+    await role.guild.owner.send(f"```json\n{json.dumps(new_roles, indent=4)}```")
