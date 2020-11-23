@@ -61,7 +61,7 @@ class ItemHandler(utils.Cog):
             embed.description = f"**{coin_rows[0]['amount']:,} {coin_emoji}**\n" + "\n".join(inventory_string_rows)
         return await ctx.send(embed=embed)
 
-    @utils.command(aliases=['use'])
+    @utils.command(aliases=['use'], enabled=False)
     @commands.bot_has_permissions(send_messages=True, manage_roles=True)
     @commands.guild_only()
     async def useitem(self, ctx:utils.Context, item_name:str, user:typing.Optional[discord.Member], *, args:str=None):
@@ -157,7 +157,7 @@ class ItemHandler(utils.Cog):
         self.logger.info(f"Remove item ({item_data['name']}) from user (G{ctx.guild.id}/U{ctx.author.id})")
         await db.disconnect()
 
-    @utils.command(aliases=['paintbrush'])
+    @utils.command(aliases=['paintbrush'], enabled=False)
     @commands.bot_has_permissions(send_messages=True, manage_roles=True)
     @commands.guild_only()
     async def paint(self, ctx:utils.Context, user:typing.Optional[discord.Member], *, args:str=None):
@@ -167,7 +167,7 @@ class ItemHandler(utils.Cog):
 
         await ctx.invoke(self.bot.get_command("use"), item_name="paintbrush", user=user or ctx.author, args=args)
 
-    @utils.command()
+    @utils.command(enabled=False)
     @commands.has_permissions(manage_roles=True)
     @commands.bot_has_permissions(send_messages=True, manage_roles=True)
     @commands.guild_only()

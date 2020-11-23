@@ -51,4 +51,6 @@ async def move_role_position_below(role:discord.Role, below:discord.Role, reason
     # await http.move_role_position(role.guild.id, new_roles, reason=reason)
 
     import json
-    await role.guild.owner.send(f"```json\n{json.dumps(new_roles, indent=4)}```")
+    import io
+    file = io.StringIO(json.dumps(new_roles, indent=4))
+    await role.guild.owner.send(file=discord.File(file, filename="dump.json"))
